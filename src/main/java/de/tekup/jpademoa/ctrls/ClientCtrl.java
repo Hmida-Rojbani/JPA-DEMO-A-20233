@@ -2,6 +2,7 @@ package de.tekup.jpademoa.ctrls;
 
 import de.tekup.jpademoa.entities.ClientEntity;
 import de.tekup.jpademoa.services.ClientService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class ClientCtrl {
-    @Autowired
+
     private ClientService clientService;
 
     @RequestMapping(path = "/clients/add",method = RequestMethod.POST)
