@@ -19,4 +19,7 @@ public class ClientService {
     public List<ClientEntity> selectAllFrom(){
         return (List<ClientEntity>) clientRepository.findAll();
     }
+
+    //TODO
+    // add method to search Client By ID and call it in Controller
 }
