@@ -4,10 +4,7 @@ import de.tekup.jpademoa.entities.ClientEntity;
 import de.tekup.jpademoa.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,17 @@ public class ClientCtrl {
     @ResponseBody
     public List<ClientEntity> getClients(){
         return clientService.selectAllFrom();
+    }
+
+    //@RequestMapping(path = "/clients/{id}",method = RequestMethod.GET)
+    @GetMapping("/clients/{id}")
+    @ResponseBody
+    public ClientEntity getClientById(@PathVariable("id") int clientId){
+       return clientService.getClientById(clientId);
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public String handleIllegalArgsException(IllegalArgumentException e){
+        return "Error in search :"+e.getMessage();
     }
 }

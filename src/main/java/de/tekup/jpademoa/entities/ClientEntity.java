@@ -55,4 +55,14 @@ public class ClientEntity{
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
+    public ClientEntity(Integer cin, String nom, String prenom, String adresse) {
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+    }
+
+    public ClientEntity() {
+    }
 }
