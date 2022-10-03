@@ -21,6 +21,9 @@ public class ClientEntity{
     private String prenom;
     private String adresse;
 
+    @ManyToOne
+    private Company company;
+
     public ClientEntity(Integer cin, String nom, String prenom, String adresse) {
         this.cin = cin;
         this.nom = nom;
