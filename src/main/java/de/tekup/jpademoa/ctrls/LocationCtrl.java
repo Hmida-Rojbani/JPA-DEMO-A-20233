@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LocationCtrl {
     private LocationService locationService;
 
-    @PostMapping("/locations/add/client/{clientId}")
+    @PostMapping("/locations/add/client/{clientId}/voiture/{voitureId}")
     @ResponseBody
     public LocationEntity registerLocation(@PathVariable("clientId") int clientId,
-                               @RequestBody LocationEntity location){
-        return locationService.saveLocation(location,clientId);
+                               @RequestBody LocationEntity location,
+                               @PathVariable("voitureId") int voitureId){
+        return locationService.saveLocation(location,clientId,voitureId);
     }
 }
