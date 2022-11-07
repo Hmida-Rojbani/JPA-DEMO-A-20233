@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -18,10 +22,15 @@ public class ClientEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(unique = true)
-    private Integer cin;
+    @Pattern(regexp = "^[0-9]{8}$", message = "Cin not valid")
+    private String cin;
     @Column(length = 50,nullable = false)
+    @NotBlank
+    @Size(max = 50, min = 3)
     private String nom;
     @Column(length = 50)
+    @NotBlank
+    @Size(max = 50, min = 3)
     private String prenom;
     private String adresse;
 
@@ -29,7 +38,7 @@ public class ClientEntity{
     private List<LocationEntity> locations;
 
 
-    public ClientEntity(Integer cin, String nom, String prenom, String adresse) {
+    public ClientEntity(String cin, String nom, String prenom, String adresse) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;

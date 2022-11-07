@@ -33,8 +33,8 @@ public class ClientService {
     @PostConstruct
     public void initDB(){
         if(clientRepository.count()==0){
-            clientRepository.save(new ClientEntity(12345678,"Doe","John","New York"));
-            this.insertClient(new ClientEntity(12345679,"Doe","Jane","Los Angelos"));
+            clientRepository.save(new ClientEntity("12345678","Doe","John","New York"));
+            this.insertClient(new ClientEntity("12345679","Doe","Jane","Los Angelos"));
         }
     }
 }
