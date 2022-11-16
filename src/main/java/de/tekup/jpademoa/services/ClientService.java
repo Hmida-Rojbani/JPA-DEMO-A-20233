@@ -30,7 +30,7 @@ public class ClientService {
                 .findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Client ID not found"));
     }
-    @PostConstruct
+    //@PostConstruct
     public void initDB(){
         if(clientRepository.count()==0){
             clientRepository.save(new ClientEntity("12345678","Doe","John","New York"));

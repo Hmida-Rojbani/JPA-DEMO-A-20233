@@ -32,7 +32,7 @@ public class ClientsViewCtrl {
     }
 
     @PostMapping("/add")
-    public String addClientPost(@ModelAttribute("client") @Valid ClientEntity client, BindingResult result, Model model){
+    public String addClientPost(@ModelAttribute("client") @Valid ClientEntity client, BindingResult result){
         if(result.hasErrors()){
             return "client-add";
         }
