@@ -10,7 +10,7 @@ public class ExceptionHandleCls {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public String handleDataIntegrityViolation(DataIntegrityViolationException e, Model model){
-        model.addAttribute("errorCode","Saving existing data");
+        model.addAttribute("errorCode","Unique Data Exp");
         model.addAttribute("errorMsg",e.getMessage());
     return "error";
     }
