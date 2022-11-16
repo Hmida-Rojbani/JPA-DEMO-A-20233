@@ -37,4 +37,8 @@ public class ClientService {
             this.insertClient(new ClientEntity("12345679","Doe","Jane","Los Angelos"));
         }
     }
+
+    public void deleteClient(int id) {
+        clientRepository.deleteById(id);
+    }
 }
