@@ -4,6 +4,8 @@ import de.tekup.jpademoa.entities.VoitureEntity;
 import de.tekup.jpademoa.repos.VoitureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,5 +31,9 @@ public class VoitureService {
         return voitureRepository
                 .findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Voiture ID not Found"));
+    }
+
+    public Page<VoitureEntity> getPageVoitures(Pageable pageable){
+        return voitureRepository.findAll(pageable);
     }
 }
