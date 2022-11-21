@@ -31,7 +31,7 @@ public class ViewVoitureCtrl {
     public String displayAllCars(Model model,@RequestParam("page") Optional<Integer> page,
                                  @RequestParam("size") Optional<Integer> size){
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(5);
+        int pageSize = size.orElse(6);
         Page<VoitureEntity> voiturePage = voitureService.getPageVoitures(PageRequest.of(currentPage - 1, pageSize));
         model.addAttribute("voiturePage", voiturePage);
 
