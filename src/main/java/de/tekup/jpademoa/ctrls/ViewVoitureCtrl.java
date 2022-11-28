@@ -7,10 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,5 +47,21 @@ public class ViewVoitureCtrl {
             model.addAttribute("pageNumbers", pageNumbers);
         }
         return "car";
+    }
+
+    @GetMapping("/add")
+    public String addClient(Model model){
+        model.addAttribute("voiture",new VoitureEntity());
+        return "voiture-add";
+    }
+
+    @PostMapping("/add")
+    public String addClientPost(@ModelAttribute("voiture") @Valid VoitureEntity voiture, BindingResult result){
+        if(result.hasErrors()){
+            return "voiture-add";
+        }
+        voitureService.insertIntoDB(voiture);
+
+        return "redirect:/voitures/ui/";
     }
 }

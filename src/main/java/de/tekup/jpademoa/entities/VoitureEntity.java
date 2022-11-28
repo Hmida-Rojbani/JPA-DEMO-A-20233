@@ -23,8 +23,14 @@ public class VoitureEntity {
     private String vendor;
     private double prixDeJour;
     private String imagePath;
+    @Transient
+    private String dateHTML="";
 
     @OneToMany(mappedBy = "voiture")
     List<LocationEntity> locations;
+
+    public void setDateHTML(String dateHTML) {
+        this.dateDeMiseEnMarche = LocalDate.parse(dateHTML);
+    }
 
 }
