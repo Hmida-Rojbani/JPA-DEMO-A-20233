@@ -56,12 +56,28 @@ public class ViewVoitureCtrl {
     }
 
     @PostMapping("/add")
-    public String addClientPost(@ModelAttribute("voiture") @Valid VoitureEntity voiture, BindingResult result){
+    public String addClientPost(@ModelAttribute("voiture") @Valid VoitureEntity voiture, BindingResult result,@RequestParam("fileImage") MultipartFile multipartFile){
         if(result.hasErrors()){
             return "voiture-add";
         }
         voitureService.insertIntoDB(voiture);
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String ext = fileName.substring(fileName.lastIndexOf("."));
 
+        if(fileName!=null && fileName.length()>0) {
+            String uploadDir = "src/main/resources/static/images/voitures/";
+            String dir="/images/voitures/";
+            fileName = "voiture-" + voiture.getId();
+            voiture.setImagePath(dir+fileName+ext);
+            try {
+                FileUploadUtil.saveFile(uploadDir, fileName, ext, multipartFile);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        voitureService.insertIntoDB(voiture);
         return "redirect:/voitures/ui/";
     }
 }
