@@ -26,13 +26,14 @@
     				<div class="car-wrap rounded ftco-animate">
     					<div class="img rounded d-flex align-items-end" th:style="'background-image: url('+${voiture.imagePath}+');'">
     					</div>
+
     					<div class="text">
     						<h2 class="mb-0"><a th:href="@{'/voitures/ui/'+${voiture.id}}" th:text="${voiture.model}"></a></h2>
     						<div class="d-flex mb-3">
 	    						<span class="cat" th:text="${voiture.vendor}">Cheverolet</span>
 	    						<p class="price ml-auto" th:utext="|${voiture.prixDeJour} <span>/day</span>|">$500 <span>/day</span></p>
     						</div>
-    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a th:href="@{'/voitures/ui/'+${voiture.id}}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a th:href="@{'/voitures/ui/'+${voiture.id}}" class="btn btn-secondary py-2 ml-1">Details</a><a th:href="@{'/voitures/ui/update/'+${voiture.id}}" class="btn btn-info py-2 ml-1">Update</a></p>
     					</div>
     				</div>
     			</div>
