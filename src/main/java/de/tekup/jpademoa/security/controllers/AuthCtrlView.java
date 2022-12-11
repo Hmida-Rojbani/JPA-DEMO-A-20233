@@ -35,5 +35,8 @@ public class AuthCtrlView {
         return "redirect:/";
     }
 
-
+    @GetMapping("/signin")
+    public String loginUser(){
+        return "signin";
+    }
 }

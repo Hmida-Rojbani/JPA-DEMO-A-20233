@@ -12,17 +12,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig {
+    private UserDetailsService bdUserDetailsService;
      @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/signup","/css/**","/js/**","/fonts/**","/images/**","/scss/**")
+                .antMatchers("/","/signin","/signup","/css/**","/js/**","/fonts/**","/images/**","/scss/**")
                 .permitAll()
                 .antMatchers("/clients/ui/**","/voitures/ui/**").hasRole("ADMIN")
                 .antMatchers("/voitures/ui/").hasRole("USER")
                 .anyRequest()
                 .authenticated()
-                .and()
+                .and().formLogin()
+                .defaultSuccessUrl("/")
+                .loginPage("/signin")
+                .and().logout().logoutSuccessUrl("/")
+                .and().userDetailsService(bdUserDetailsService)
                 .build();
 
     }
