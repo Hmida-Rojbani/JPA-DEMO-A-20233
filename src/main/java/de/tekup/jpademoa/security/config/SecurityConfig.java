@@ -13,25 +13,25 @@ import org.springframework.security.web.SecurityFilterChain;
 @AllArgsConstructor
 public class SecurityConfig {
     private UserDetailsService bdUserDetailsService;
-     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/","/signin","/signup","/css/**","/js/**","/fonts/**","/images/**","/scss/**")
-                .permitAll()
-                .antMatchers("/clients/ui/**","/voitures/ui/**").hasRole("ADMIN")
-                .antMatchers("/voitures/ui/").hasRole("USER")
-                .anyRequest()
-                .authenticated()
-                .and().formLogin()
-                .defaultSuccessUrl("/")
-                .loginPage("/signin")
-                .and().logout().logoutSuccessUrl("/")
-                .and().userDetailsService(bdUserDetailsService)
-                .build();
-
-    }
-    @Bean
+//     @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http.csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/","/signin","/signup","/css/**","/js/**","/fonts/**","/images/**","/scss/**")
+//                .permitAll()
+//                .antMatchers("/clients/ui/**","/voitures/ui/**").hasRole("ADMIN")
+//                .antMatchers("/voitures/ui/").hasRole("USER")
+//                .anyRequest()
+//                .authenticated()
+//                .and().formLogin()
+//                .defaultSuccessUrl("/")
+//                .loginPage("/signin")
+//                .and().logout().logoutSuccessUrl("/")
+//                .and().userDetailsService(bdUserDetailsService)
+//                .build();
+//
+//    }
+   @Bean
     public PasswordEncoder getPasswordEncoder(){
          return new BCryptPasswordEncoder();
     }
