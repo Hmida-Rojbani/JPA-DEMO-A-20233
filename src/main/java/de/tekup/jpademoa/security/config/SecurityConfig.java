@@ -18,11 +18,16 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/","/signup","/css/**","/js/**","/fonts/**","/images/**","/scss/**")
                 .permitAll()
+                .antMatchers("/clients/ui/**","/voitures/ui/**").hasRole("ADMIN")
+                .antMatchers("/voitures/ui/").hasRole("USER")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .build();
 
     }
-
+    @Bean
+    public PasswordEncoder getPasswordEncoder(){
+         return new BCryptPasswordEncoder();
+    }
 }

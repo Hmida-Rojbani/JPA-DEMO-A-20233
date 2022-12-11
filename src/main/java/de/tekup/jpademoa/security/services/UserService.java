@@ -13,10 +13,13 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private UserRepository userRepository;
+    private PasswordEncoder bcryptPasswordEncoder;
 
     public void registerUser(User user){
+        user.setPassword(bcryptPasswordEncoder.encode(user.getPassword()));
         user.setRole(Role.ROLE_USER);
         userRepository.save(user);
     }
+
 
 }
