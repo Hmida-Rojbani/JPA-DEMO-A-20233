@@ -20,17 +20,18 @@ public class TokenService {
 
     public String generateToken(Authentication authentication) {
         Instant instant = Instant.now();
-        String role = authentication
+        String scope = authentication
                     .getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
+                .map(str->str.substring(5))
                 .collect(Collectors.joining(","));
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("CarRentApp")
                 .issuedAt(instant)
                 .expiresAt(instant.plus(1, ChronoUnit.HOURS))
                 .subject(authentication.getName())
-                .claim("role",role)
+                .claim("scope",scope)
                 .build();
         return jwtEncoder.encode(JwtEncoderParameters.from(claims))
                 .getTokenValue();

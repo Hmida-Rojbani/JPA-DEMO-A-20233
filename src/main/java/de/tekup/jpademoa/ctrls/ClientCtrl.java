@@ -4,6 +4,7 @@ import de.tekup.jpademoa.entities.ClientEntity;
 import de.tekup.jpademoa.services.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class ClientCtrl {
 
     private ClientService clientService;
 
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @RequestMapping(path = "/clients/add",method = RequestMethod.POST)
     public ClientEntity saveClient(@RequestBody ClientEntity client){
         return clientService.insertClient(client);

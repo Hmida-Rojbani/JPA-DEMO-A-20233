@@ -15,7 +15,7 @@ public class ExceptionHandleCls {
     return "error";
     }
 
-    @ExceptionHandler(Exception.class)
+    //@ExceptionHandler(Exception.class)
     public String handleException(Exception e, Model model){
         model.addAttribute("errorCode","Something Wrong");
         model.addAttribute("errorMsg",e.getMessage());
