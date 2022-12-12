@@ -12,21 +12,24 @@ import java.util.List;
 @AllArgsConstructor
 public class SecurityUser implements UserDetails {
 
-    private final User user;
-    @Override
-    public String getUsername() {
-        return user.getUsername();
-    }
+    private User user;
     @Override
     public String getPassword() {
         return user.getPassword();
     }
+
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
-        return authorities;
+         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+         list.add(new SimpleGrantedAuthority(user.getRole().name()));
+         return list;
     }
+
 
 
     @Override
